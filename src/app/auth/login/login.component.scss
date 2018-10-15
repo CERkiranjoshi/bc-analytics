@@ -1,0 +1,30 @@
+.login-area {
+	background: #fff;
+	border: 2px solid #fff;
+	border-radius: 7px;
+	top:30%;
+	left:0;
+    right:0;
+	float: none;
+	position: absolute;
+	margin: 0 auto;
+}
+.fixed-centered-covers-entire-page{
+	margin:auto;
+    
+	background-repeat: no-repeat;
+	background-size:cover;
+    background-position: 50%;
+    background-color: #fff;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index:-1;
+    position:fixed;
+}
+
+.has-captcha-error {
+	color: #a94442;
+}
+

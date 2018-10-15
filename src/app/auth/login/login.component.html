@@ -1,0 +1,46 @@
+<div class="page-loading-wait page-loading-wait-outside" *ngIf="loading">
+	<i class="fa fa-cog fa-spin fa-fw"></i>
+	<h5>Verifying user</h5>
+</div>
+<div class="container-fluid fixed-centered-covers-entire-page" style="background-image: url(../../assets/img/landingpage.jpg);" *ngIf="!loading" >
+	<div class="row">
+		<div class="login-area col-xs-12 col-sm-6 col-md-3">
+			<h2 class="mb20">Login</h2>
+			<form name="form" (ngSubmit)="signinUser(f)" #f="ngForm" role="form"
+				class="form">
+				<div class="form-group has-feedback"
+					[ngClass]="{'has-error':!username.valid && username.touched}">
+					<label for="username">Username</label> <input id="username"
+						autocomplete="off" type="text" placeholder="Username"
+						name="username" #username="ngModel" ngModel required
+						class="form-control" /> <span
+						class="glyphicon glyphicon-user form-control-feedback text-muted"></span>
+					<span class="help-block"
+						*ngIf="!username.valid && username.touched"> Username is
+						required </span>
+				</div>
+				<div class="form-group has-feedback"
+					[ngClass]="{'has-error':!password.valid && password.touched}">
+					<label for="password">Password</label> <input id="password"
+						autocomplete="off" type="password" placeholder="Password"
+						name="password" #password="ngModel" ngModel required
+						class="form-control" /> <span
+						class="glyphicon glyphicon-lock form-control-feedback text-muted"></span>
+					<span class="help-block"
+						*ngIf="!password.valid && password.touched"> Password is
+						required </span>
+				</div>
+				<div class="form-actions form-group">
+					<button type="submit" [disabled]="!f.valid"
+						class="btn btn-danger btn-lg btn-block">Login</button>
+				</div>
+				<div class="form-group text-center">
+					<p style="font-size: small;">
+						© {{ currentDate | date:'yyyy' }} - <a href="https://www.blenheimchalcot.com/" target="_blank">Blenheim Chalcot</a>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
