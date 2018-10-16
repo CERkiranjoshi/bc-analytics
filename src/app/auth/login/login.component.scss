@@ -2,7 +2,7 @@
 	background: #fff;
 	border: 2px solid #fff;
 	border-radius: 7px;
-	top:30%;
+	top:25%;
 	left:0;
     right:0;
 	float: none;
@@ -24,7 +24,11 @@
     position:fixed;
 }
 
-.has-captcha-error {
-	color: #a94442;
+.bci-logo{
+	height: 100px;
+	padding: 10px;
 }
-
+.logo-container{
+	margin-top:15px;
+	margin-bottom: 15px; 
+}

@@ -2,15 +2,18 @@
 	<i class="fa fa-cog fa-spin fa-fw"></i>
 	<h5>Verifying user</h5>
 </div>
-<div class="container-fluid fixed-centered-covers-entire-page" style="background-image: url(../../assets/img/landingpage.jpg);" *ngIf="!loading" >
+<div class="container-fluid fixed-centered-covers-entire-page" style="background-image: url(../../assets/img/landingpage_new.jpg);" *ngIf="!loading" >
 	<div class="row">
-		<div class="login-area col-xs-12 col-sm-6 col-md-3">
-			<h2 class="mb20">Login</h2>
+		<div class="login-area col-xs-10 col-sm-6 col-md-3">
+			<div class="text-center logo-container">
+				<img class="img img-responsive bci-logo" src="../../assets/img/logo.png" />
+			</div>
+			
 			<form name="form" (ngSubmit)="signinUser(f)" #f="ngForm" role="form"
 				class="form">
 				<div class="form-group has-feedback"
 					[ngClass]="{'has-error':!username.valid && username.touched}">
-					<label for="username">Username</label> <input id="username"
+					<h5 for="username">Username</h5> <input id="username"
 						autocomplete="off" type="text" placeholder="Username"
 						name="username" #username="ngModel" ngModel required
 						class="form-control" /> <span
@@ -21,7 +24,7 @@
 				</div>
 				<div class="form-group has-feedback"
 					[ngClass]="{'has-error':!password.valid && password.touched}">
-					<label for="password">Password</label> <input id="password"
+					<h5 for="password">Password</h5> <input id="password"
 						autocomplete="off" type="password" placeholder="Password"
 						name="password" #password="ngModel" ngModel required
 						class="form-control" /> <span
@@ -31,10 +34,9 @@
 						required </span>
 				</div>
 				<div class="form-actions form-group">
-					<button type="submit" [disabled]="!f.valid"
-						class="btn btn-danger btn-lg btn-block">Login</button>
+						<button mdbBtn type="submit" [disabled]="!f.valid" color="bctheme" class="waves-light btn-block" mdbWavesEffect>Login</button>
 				</div>
-				<div class="form-group text-center">
+				<div class="form-group text-center mt30 mb30">
 					<p style="font-size: small;">
 						© {{ currentDate | date:'yyyy' }} - <a href="https://www.blenheimchalcot.com/" target="_blank">Blenheim Chalcot</a>
 					</p>

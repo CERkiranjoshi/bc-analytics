@@ -1,1 +1,82 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.btn-bctheme{
+    background-color : #e73446;
+    color:#fff;
+    opacity: 0.9;
+}
+.help-block {
+	color: #e73446;
+}
+.mr0{
+    margin: 0 !important;
+  }
+  .mb0 {
+    margin-bottom: 0px !important;
+  }
+  .mb10 {
+    margin-bottom: 10px !important;
+  }
+  .mb20 {
+    margin-bottom: 20px !important;
+  }
+  .mb30{
+    margin-bottom: 30px !important;
+  }
+  .ml20 {
+    margin-left: 20px;
+  }
+  .ml10 {
+    margin-left: 10px;
+  }
+  .mr10 {
+    margin-right: 10px;
+  }
+  .mt10 {
+    margin-top: 10px;
+  }
+  .mt15 {
+    margin-top: 15px;
+  }
+  .mt25 {
+    margin-top: 25px;
+  }
+  .mt20 {
+    margin-top: 20px;
+  }
+  .mt30 {
+    margin-top: 30px;
+  }
+  .mr5 {
+    margin-right: 5px;
+  }
+  .ml5 {
+    margin-left: 5px;
+  }
+  .pd0 {
+    padding: 0 !important;
+  }
+  .fs14 {
+    font-size: 14px;
+  }
+  .fs20 {
+    font-size: 20px;
+  }
+  .t0{
+      top : 0 !important;
+  }
+  .thumb48 {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .text-bold {
+    font-weight: bold !important;
+  }
+  .text-normal {
+    font-weight: normal !important;
+  }
+  .text-uppercase {
+    text-transform: uppercase;
+  }

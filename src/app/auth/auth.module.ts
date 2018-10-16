@@ -5,6 +5,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {AuthRoutingModule} from './auth-routing.module';
 import {LoginComponent} from './login/login.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import {LoginComponent} from './login/login.component';
   imports: [
     FormsModule,
     AuthRoutingModule,
-    CommonModule
+    CommonModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [AuthService]
 })

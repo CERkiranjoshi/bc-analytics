@@ -10,10 +10,11 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     AppComponent
   ],
   imports: [
+    AuthModule,
     MDBBootstrapModule.forRoot(),
     BrowserModule,
-    AppRoutingModule,
-    AuthModule
+    AppRoutingModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
