@@ -8,6 +8,9 @@
 			<div class="text-center logo-container">
 				<img class="img img-responsive bci-logo" src="../../assets/img/logo.png" />
 			</div>
+			<div *ngIf="err" class="alert alert-danger alert-dismissible fade show" role="alert">
+				Username or Password is wrong please try again.
+			</div>
 			
 			<form name="form" (ngSubmit)="signinUser(f)" #f="ngForm" role="form"
 				class="form">

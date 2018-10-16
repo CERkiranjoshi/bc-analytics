@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   @ViewChild('f') signinForm: NgForm;
   loading = false
-  err = true;
+  err = false;
   currentDate = new Date();
 
   constructor(private router: Router, private authService: AuthService) {
@@ -26,9 +26,13 @@ export class LoginComponent implements OnInit {
     const username = form.value.username;
     const password = form.value.password;
     if (username=='bcindia' && password == 'bcindia') {
+      this.authService.signinUser(username, password);
       this.err = false;
     } else {
       this.err = true;
+      setTimeout(() => {
+        this.err = false;
+      }, 3000);
     }
   }
 
