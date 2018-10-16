@@ -80,3 +80,10 @@ body{
   .text-uppercase {
     text-transform: uppercase;
   }
+
+  /*! if you add your own media css please above that name of your module must be their in all 4 places*/
+@media (max-width: 480px){
+    .login-area{
+      top:5% !important;
+    }
+  }
