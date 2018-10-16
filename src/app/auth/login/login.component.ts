@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
     if (username=='bcindia' && password == 'bcindia') {
       this.authService.signinUser(username, password);
       this.err = false;
+      this.router.navigate(['/home']);
     } else {
       this.err = true;
       setTimeout(() => {

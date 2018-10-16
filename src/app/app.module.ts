@@ -4,10 +4,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {AuthModule} from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     AuthModule,
