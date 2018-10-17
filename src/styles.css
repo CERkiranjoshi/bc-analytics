@@ -2,6 +2,9 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
 }
+.bc-theme{
+  background-color:#e73446 !important; 
+}
 .btn-bctheme{
     background-color : #e73446;
     color:#fff;
