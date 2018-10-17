@@ -1,22 +1,41 @@
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark bc-theme">
-    <a class="navbar-brand" href="javascript:void(0)">BC Intellegence</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<div class="bc-container" [class.bc-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="bctheme" class="bc-toolbar">
+    <button mat-icon-button (click)="snav.toggle()" style="margin-top:-15px;margin-right:10px;">
+      <mat-icon><img src="../../assets/img/bclogo.svg" height="40"/></mat-icon>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link waves-effect waves-light" href="javascript:void(0)">
-            <i class="fa fa-question-circle"></i> Help</a>
-        </li>
-        <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink-4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fa fa-user"></i> BC India </a>
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown-cyan" aria-labelledby="navbarDropdownMenuLink-4">
-            <a class="dropdown-item waves-effect waves-light" href="javascript:void(0)">My account</a>
-            <a class="dropdown-item waves-effect waves-light" href="javascript:void(0)" (click)="signOut()">Log out</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <h1 class="bc-app-name">BC Intellegence</h1>
+    <span class="bc-fill-remaining-space"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>home</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>
+        <mat-icon>account_box</mat-icon>
+        <span>My Account</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>help_outline</mat-icon>
+        <span>Help</span>
+      </button>
+      <button mat-menu-item (click)="signOut()">
+        <mat-icon>input</mat-icon>
+        <span>Log Out</span>
+      </button>
+    </mat-menu>
+    BC India
+  </mat-toolbar>
+
+  <mat-sidenav-container class="bc-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-nav-list>
+        <a mat-list-item><i class="fa fa-area-chart"></i>Twitter</a>
+        <a mat-list-item><i class="fa fa-line-chart"></i>Instagram</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <!-- <p *ngFor="let content of fillerContent">{{content}}</p> -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
