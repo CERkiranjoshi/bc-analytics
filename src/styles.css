@@ -5,7 +5,7 @@ body{
 .bc-theme{
   background-color:#e73446 !important; 
 }
-.btn-bctheme{
+.btn-bctheme,.mat-bctheme{
     background-color : #e73446;
     color:#fff;
     opacity: 0.9;
@@ -72,6 +72,12 @@ body{
   }
   .pd10 {
     padding: 10px !important;
+  }
+  .pd15 {
+    padding: 15px !important;
+  }
+  .pdb15 {
+    padding-bottom: 15px !important;
   }
   .fs14 {
     font-size: 14px;
