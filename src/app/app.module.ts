@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule ,NO_ERRORS_SCHEMA} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
+import {FormsModule} from '@angular/forms';
 import {AuthModule} from './auth/auth.module';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -43,13 +44,16 @@ import {MatAutocompleteModule,
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule} from '@angular/material';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   imports: [
+    FormsModule,
     CdkTableModule,
     CdkTreeModule,
     AuthModule,

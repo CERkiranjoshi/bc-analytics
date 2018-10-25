@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-12" id="filter-row">
+    <button mat-icon-button class="pull-right mr20" [matMenuTriggerFor]="appMenu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>import_export</mat-icon><span>Save as PDF</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>import_export</mat-icon><span>Save as XL</span>
+      </button>
+    </mat-menu>
+    <button mat-icon-button class="pull-right mr20 ml20" [matMenuTriggerFor]="menu">
+
+      <mat-icon>calendar_today</mat-icon>
+      <span>Today</span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>
+        <span>Today</span>
+      </button>
+      <button mat-menu-item>
+        <span>Yesterday</span>
+      </button>
+      <button mat-menu-item>
+        <span>Last 7 Days</span>
+      </button>
+      <button mat-menu-item>
+        <span>Current Month</span>
+      </button>
+      <button mat-menu-item>
+        <span>Current Year</span>
+      </button>
+    </mat-menu>
+    <button mat-icon-button class="pull-right" [matMenuTriggerFor]="location">
+      <mat-icon>rss_feed</mat-icon>
+      <span>Most Recent</span>
+    </button>
+
+    <mat-menu #location="matMenu">
+      <button mat-menu-item disabled>
+        <span>Most Recent</span>
+      </button>
+      <button mat-menu-item>
+        <span>Popular</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="col-md-4 col-sm-4 col-12 search-content">
+    <div class="all-of-these search-text">
+      <input type="text" placeholder="All of these" class="form-control search-content-area" (keyup.enter)="onEnter('allOfThese')"
+        [(ngModel)]="tempContent.allOfThese" id="allOfThese">
+      <span class="badge badge-bc pd10 mrall10" (click)="removeText('allOfThese',i)" *ngFor="let content of contentFilters.allOfThese; let i = index;">{{content}}
+        <span class="badge-text">X</span></span>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 col-12 search-content">
+    <div class="at-least-once search-text">
+      <input type="text" placeholder="At least once" class="form-control search-content-area" (keyup.enter)="onEnter('atLeastOnce')"
+        [(ngModel)]="tempContent.atLeastOnce" id="atLeastOnce">
+      <span class="badge badge-bc pd10 mrall10" (click)="removeText('atLeastOnce',i)" *ngFor="let content of contentFilters.atLeastOnce; let i = index;">{{content}}
+        <span class="badge-text">X</span></span>
+    </div>
+  </div>
+  <div class="col-md-4 col-sm-4 col-12 search-content">
+    <div class="none-of-these search-text">
+      <input type="text" placeholder="None of these" class="form-control search-content-area" (keyup.enter)="onEnter('noneOfThese')"
+        [(ngModel)]="tempContent.noneOfThese" id="noneOfThese">
+      <span class="badge badge-bc pd10 mrall10" (click)="removeText('noneOfThese',i)" *ngFor="let content of contentFilters.noneOfThese; let i = index;">{{content}}
+        <span class="badge-text">X</span></span>
+    </div>
+  </div>
+</div>
+<mat-divider></mat-divider>
