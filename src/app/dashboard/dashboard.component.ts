@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import * as _ from 'lodash';
+import 'rxjs'
+import { HttpClient } from "../shared/service/httpclient.service";
+import { ContentService } from "./content.service";
 
 @Component({
     selector: 'app-dashboard',
@@ -12,8 +15,9 @@ export class DashboardComponent implements OnInit {
     contentFilters: any = {};
     tempContent: any = {};
     panelOpenState = true;
+    twitterData = [];
 
-    constructor() {
+    constructor(private contentService: ContentService, private httpclient: HttpClient) {
         this.initFilter();
     }
 
@@ -44,9 +48,22 @@ export class DashboardComponent implements OnInit {
     }
 
     applyFilter() {
-        if (this.contentFilters.allOfThese.length === 0 && this.contentFilters.atLeastOnce.length === 0 && this.contentFilters.noneOfThese.length === 0) {
-            return false;
-        }
+        // if (this.contentFilters.allOfThese.length === 0 && this.contentFilters.atLeastOnce.length === 0 && this.contentFilters.noneOfThese.length === 0) {
+        //     return false;
+        // }
+        this.contentService.getFilteredContents(this.contentFilters)
+            .subscribe(
+                (response) => {
+                    this.twitterData = response.products;
+                    // this.totalProducts = response.total_count;
+                    // this.productFilter.loading = false
+                    // this.setPrevSelectedProduct()
+                },
+                (error) => {
+                    this.twitterData = []
+                    // this.productFilter.loading = false
+                }
+            );
     }
 
 }

@@ -13,6 +13,14 @@ body{
 .help-block {
 	color: #e73446;
 }
+.twitter-icon{
+  background-color: #fff;
+  color: #0084b4;
+}
+.news-icon{
+  background-color: #fff;
+  color: #e73446;
+}
 .mr0{
     margin: 0 !important;
   }

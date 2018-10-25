@@ -9,6 +9,9 @@ import { HomeComponent } from './home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import {HttpModule} from '@angular/http';
+import {HttpClient} from './shared/service/httpclient.service';
+import {ContentService} from './dashboard/content.service';
 import {MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -53,6 +56,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
+    HttpModule,
     FormsModule,
     CdkTableModule,
     CdkTreeModule,
@@ -97,7 +101,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatTooltipModule,
     MatTreeModule
   ],
-  providers: [],
+  providers: [HttpClient, ContentService],
   bootstrap: [AppComponent],
   schemas: [ NO_ERRORS_SCHEMA ]
 })
