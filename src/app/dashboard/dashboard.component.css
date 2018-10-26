@@ -33,6 +33,9 @@
     height: 350px;
     overflow-y: auto;
 }
+.channel-content-wc{
+    height: 200px;
+}
 .no-data{
     text-align: center;
     line-height: 330px;

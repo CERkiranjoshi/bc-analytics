@@ -63,6 +63,8 @@ export class DashboardComponent implements OnInit {
             .subscribe(
                 (response: any) => {
                     this.twitterData = response.results;
+                    this.twitterData.wordcloud_path = 'https://secure-hollows-83816.herokuapp.com/static/img/wc.png?rand=' + Math.random();
+                    this.drawTwitterGraph();
                 },
                 (error) => {
                     this.twitterData = [];
@@ -75,11 +77,52 @@ export class DashboardComponent implements OnInit {
             .subscribe(
                 (response: any) => {
                     this.newsData = response.results;
+                    this.drawNewsGraph();
                 },
                 (error) => {
                     this.newsData = [];
                 }
             );
+    }
+
+    drawTwitterGraph() {
+        var ctxP = document.getElementById("pieChart").getContext('2d');
+        var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+                labels: ["Positive", "Negative", "Neutral"],
+                datasets: [
+                    {
+                        data: [300, 50, 100],
+                        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+                        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+                    }
+                ]
+            },
+            options: {
+                responsive: false
+            }
+        });
+    }
+
+    drawNewsGraph() {
+        var ctxP = document.getElementById("pieChartNews").getContext('2d');
+        var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+                labels: ["Positive", "Negative", "Neutral"],
+                datasets: [
+                    {
+                        data: [300, 50, 100],
+                        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+                        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+                    }
+                ]
+            },
+            options: {
+                responsive: false
+            }
+        });
     }
 
 }

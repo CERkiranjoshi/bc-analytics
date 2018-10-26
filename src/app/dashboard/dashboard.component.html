@@ -50,38 +50,47 @@
     </mat-menu>
   </div>
 </div>
+<mat-accordion>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h4><i class="fa fa-search news-icon"></i> Search</h4>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-12 search-content">
+        <div class="all-of-these search-text">
+          <input type="text" placeholder="All of these" class="form-control search-content-area" (keyup.enter)="onEnter('allOfThese')"
+            [(ngModel)]="tempContent.allOfThese" id="allOfThese">
+          <span class="badge badge-bc pd10 mrall10" (click)="removeText('allOfThese',i)" *ngFor="let content of contentFilters.allOfThese; let i = index;">{{content}}
+            <span class="badge-text">X</span></span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-12 search-content">
+        <div class="at-least-once search-text">
+          <input type="text" placeholder="At least once" class="form-control search-content-area" (keyup.enter)="onEnter('atLeastOnce')"
+            [(ngModel)]="tempContent.atLeastOnce" id="atLeastOnce">
+          <span class="badge badge-bc pd10 mrall10" (click)="removeText('atLeastOnce',i)" *ngFor="let content of contentFilters.atLeastOnce; let i = index;">{{content}}
+            <span class="badge-text">X</span></span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4 col-12 search-content">
+        <div class="none-of-these search-text">
+          <input type="text" placeholder="None of these" class="form-control search-content-area" (keyup.enter)="onEnter('noneOfThese')"
+            [(ngModel)]="tempContent.noneOfThese" id="noneOfThese">
+          <span class="badge badge-bc pd10 mrall10" (click)="removeText('noneOfThese',i)" *ngFor="let content of contentFilters.noneOfThese; let i = index;">{{content}}
+            <span class="badge-text">X</span></span>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-4 col-12 offset-md-10 offset-sm-8 pdb15">
+        <button mat-stroked-button color="bctheme" (click)="applyFilter()" class="btn-block">Search</button>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
 
-<mat-divider></mat-divider>
-<div class="row">
-  <div class="col-md-4 col-sm-4 col-12 search-content">
-    <div class="all-of-these search-text">
-      <input type="text" placeholder="All of these" class="form-control search-content-area" (keyup.enter)="onEnter('allOfThese')"
-        [(ngModel)]="tempContent.allOfThese" id="allOfThese">
-      <span class="badge badge-bc pd10 mrall10" (click)="removeText('allOfThese',i)" *ngFor="let content of contentFilters.allOfThese; let i = index;">{{content}}
-        <span class="badge-text">X</span></span>
-    </div>
-  </div>
-  <div class="col-md-4 col-sm-4 col-12 search-content">
-    <div class="at-least-once search-text">
-      <input type="text" placeholder="At least once" class="form-control search-content-area" (keyup.enter)="onEnter('atLeastOnce')"
-        [(ngModel)]="tempContent.atLeastOnce" id="atLeastOnce">
-      <span class="badge badge-bc pd10 mrall10" (click)="removeText('atLeastOnce',i)" *ngFor="let content of contentFilters.atLeastOnce; let i = index;">{{content}}
-        <span class="badge-text">X</span></span>
-    </div>
-  </div>
-  <div class="col-md-4 col-sm-4 col-12 search-content">
-    <div class="none-of-these search-text">
-      <input type="text" placeholder="None of these" class="form-control search-content-area" (keyup.enter)="onEnter('noneOfThese')"
-        [(ngModel)]="tempContent.noneOfThese" id="noneOfThese">
-      <span class="badge badge-bc pd10 mrall10" (click)="removeText('noneOfThese',i)" *ngFor="let content of contentFilters.noneOfThese; let i = index;">{{content}}
-        <span class="badge-text">X</span></span>
-    </div>
-  </div>
-  <div class="col-md-2 col-sm-4 col-12 offset-md-10 offset-sm-8 pdb15">
-    <button mat-stroked-button color="bctheme" (click)="applyFilter()" class="btn-block">Search</button>
-  </div>
-</div>
-<mat-divider></mat-divider>
+<mat-divider class="mt20"></mat-divider>
+
 <div class="row">
   <div class="col-md-6 col-sm-6 col-12 search-data mt20 mb20">
     <mat-accordion>
@@ -132,6 +141,40 @@
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
           <mat-panel-title>
+            <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter sentiment analysis</h4>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="channel-content text-center">
+          <canvas id="pieChart" class="mrauto" width="350" height="350"></canvas>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-12 word-cloud mt20 mb20">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter Word Cloud</h4>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="channel-content-wc text-center">
+          <img class="img img-fluid" src="{{twitterData.wordcloud_path}}" alt="Word Cloud">
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
+<mat-divider></mat-divider>
+<div class="row">
+  <div class="col-md-6 col-sm-6 col-12 word-cloud mt20 mb20">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
             <h4><i class="fa fa-newspaper-o news-icon"></i> News</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
@@ -161,5 +204,36 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
+  <div class="col-md-6 col-sm-6 col-12 word-cloud mt20 mb20">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h4><i class="fa fa-newspaper-o news-icon"></i> News sentiment analysis</h4>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="channel-content text-center">
+          <canvas id="pieChartNews" class="mrauto" width="350" height="350"></canvas>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>
 <mat-divider></mat-divider>
+<div class="row">
+  <div class="col-md-12 col-sm-12 col-12 word-cloud mt20 mb20">
+    <mat-accordion>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h4><i class="fa fa-instagram instagram-icon"></i> Instagram Tag Count</h4>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="channel-content-wc text-center">
+          <h3>#cricket</h3>
+          <h1>Used by 3206226 instagram users</h1>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>
