@@ -88,10 +88,42 @@
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <span><i class="fa fa-twitter-square twitter-icon"></i> Twitter</span>
+            <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter Feeds</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>No data available for selected filter.</p>
+        <div *ngIf="twitterData.items.length == 0" class="channel-content no-data">
+          <p>No data available for selected filter.</p>
+        </div>
+        <div class="channel-content">
+          <mat-list>
+            <mat-list-item *ngFor="let item of twitterData.items">
+              <img matListAvatar src="{{item.user.user_profile}}" alt="...">
+              <h3 matLine class="mt5"> {{item.user.user_screenname}} </h3>
+              <h3 matLine class="mt5" matTooltip="{{item.tweet}}"> {{item.tweet}} </h3>
+              <p matLine>
+                <button mat-icon-button class="pull-left mr10" style="width: auto;">
+                  <mat-icon>access_time</mat-icon>
+                  <span class="ml5">{{item.created_at | date:'dd MMM yyyy h:mm a'}}</span>
+                </button>
+                <button mat-icon-button class="pull-left mr10" style="width: auto;">
+                  <mat-icon>favorite_border</mat-icon>
+                  <span class="ml5">{{item.liked_by}}</span>
+                </button>
+                <button mat-icon-button class="pull-left mr10" style="width: auto;">
+                  <mat-icon>share</mat-icon>
+                  <span class="ml5">{{item.retweeted_by}}</span>
+                </button>
+                <span *ngIf="item.sentiment=='positive'" class="pull-right sentiment-poisitive" matTooltip="Positive">
+                  <mat-icon>sentiment_very_satisfied</mat-icon>
+                </span>
+                <span *ngIf="item.sentiment=='negative'" class="pull-right sentiment-nagative" matTooltip="Negative">
+                  <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                </span>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
@@ -100,10 +132,32 @@
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
           <mat-panel-title>
-              <span><i class="fa fa-newspaper-o news-icon"></i> News</span>
+            <h4><i class="fa fa-newspaper-o news-icon"></i> News</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <p>No data available for selected filter.</p>
+        <div *ngIf="newsData.items.length == 0" class="channel-content no-data">
+          <p>No data available for selected filter.</p>
+        </div>
+        <div *ngIf="newsData.items.length > 0" class="channel-content">
+          <mat-list>
+            <mat-list-item *ngFor="let item of newsData.items">
+              <img matListAvatar src="../../assets/img/news.png" alt="News">
+              <h3 matLine class="mt5"> {{item.publisher}} </h3>
+              <h3 matLine class="mt5" matTooltip="{{item.title}}"> {{item.title}} </h3>
+              <p matLine>
+                <button mat-icon-button class="pull-left mr10" style="width: auto;">
+                  <mat-icon>access_time</mat-icon>
+                  <span class="ml5">{{item.published_on | date:'dd MMM yyyy h:mm a'}}</span>
+                </button>
+                <button mat-icon-button class="pull-left mr10" style="width: auto;">
+                  <mat-icon>share</mat-icon>
+                  <span class="ml5">{{item.social_shares.facebook}}</span>
+                </button>
+              </p>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

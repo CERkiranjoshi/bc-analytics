@@ -29,3 +29,17 @@
 #filter-row .mat-icon-button{
     width: auto !important;
 }
+.channel-content{
+    height: 350px;
+    overflow-y: auto;
+}
+.no-data{
+    text-align: center;
+    line-height: 330px;
+}
+.sentiment-poisitive{
+    color: #fbba22;
+}
+.sentiment-nagative{
+    color: red;;
+}

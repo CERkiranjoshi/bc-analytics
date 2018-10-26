@@ -10,21 +10,7 @@ export class ContentService {
 
   constructor(private HttpClient: HttpClient) { }
 
-
-  storeRecipes() {
-    // const headers = new HttpHeaders().set('Authorization', 'Bearer afdklasflaldf');
-
-    // return this.httpClient.put('https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {
-    //   observe: 'body',
-    //   params: new HttpParams().set('auth', token)
-    //   // headers: headers
-    // });
-    // const req = new HttpRequest('POST', 'https://ng-recipe-book-3adbb.firebaseio.com/recipes.json', this.recipeService.getRecipes(), {reportProgress: true});
-    // return this.httpClient.request(req);
-  }
-
-
-  getFilteredContents(contentFilter: any) {
+  getFilteredContentsTwitter(contentFilter: any) {
     const data = {
       "channelType": "twitter",
       "resultType": "popular",
@@ -47,9 +33,22 @@ export class ContentService {
     for (var key in data) {
       form_data.append(key, data[key]);
     }
-    console.log(form_data)
-    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'});
-    return this.HttpClient.post("https://secure-hollows-83816.herokuapp.com/bca/getTwitterFeed/", form_data)
+    // return this.HttpClient.post("https://secure-hollows-83816.herokuapp.com/bca/getTwitterFeed/", form_data)
+    //   .pipe(map((content) => { return content }));
+
+    return this.HttpClient.get("assets/data/tweet.json")
       .pipe(map((content) => { return content }));
   }
+
+  getFilteredContentsNews(contentFilter: any) {
+    return this.HttpClient.get("assets/data/news.json")
+      .pipe(map((content) => { return content }));
+  }
+
+  getFilteredContentsInstagram(contentFilter: any) {
+    return this.HttpClient.get("assets/data/instagram.json")
+      .pipe(map((content) => { return content }));
+  }
+
+
 }

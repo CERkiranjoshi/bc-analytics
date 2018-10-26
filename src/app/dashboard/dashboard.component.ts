@@ -15,12 +15,17 @@ export class DashboardComponent implements OnInit {
     tempContent: any = {};
     panelOpenState = true;
     twitterData: any = {};
+    newsData: any = {};
 
     constructor(private contentService: ContentService) {
         this.initFilter();
+        this.twitterData.items = [];
+        this.newsData.items = [];
     }
 
     ngOnInit() {
+        this.getTwitterData();
+        this.getNewsData();
     }
 
     initFilter() {
@@ -50,17 +55,29 @@ export class DashboardComponent implements OnInit {
         // if (this.contentFilters.allOfThese.length === 0 && this.contentFilters.atLeastOnce.length === 0 && this.contentFilters.noneOfThese.length === 0) {
         //     return false;
         // }
-        this.contentService.getFilteredContents(this.contentFilters)
+        this.getTwitterData();
+    }
+
+    getTwitterData() {
+        this.contentService.getFilteredContentsTwitter(this.contentFilters)
             .subscribe(
-                (response) => {
-                    this.twitterData = response;
-                    // this.totalProducts = response.total_count;
-                    // this.productFilter.loading = false
-                    // this.setPrevSelectedProduct()
+                (response: any) => {
+                    this.twitterData = response.results;
                 },
                 (error) => {
-                    this.twitterData = []
-                    // this.productFilter.loading = false
+                    this.twitterData = [];
+                }
+            );
+    }
+
+    getNewsData() {
+        this.contentService.getFilteredContentsNews(this.contentFilters)
+            .subscribe(
+                (response: any) => {
+                    this.newsData = response.results;
+                },
+                (error) => {
+                    this.newsData = [];
                 }
             );
     }

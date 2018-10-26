@@ -42,14 +42,20 @@ body{
   .ml20 {
     margin-left: 20px !important;
   }
+  .ml5 {
+    margin-left: 5px !important;
+  }
   .ml10 {
     margin-left: 10px;
   }
   .mr10 {
-    margin-right: 10px;
+    margin-right: 10px !important;
+  }
+  .mt5 {
+    margin-top: 5px !important;
   }
   .mt10 {
-    margin-top: 10px;
+    margin-top: 10px !important;
   }
   .mt15 {
     margin-top: 15px;
