@@ -66,9 +66,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     applyFilter() {
-        // if (this.contentFilters.allOfThese.length === 0 && this.contentFilters.atLeastOnce.length === 0 && this.contentFilters.noneOfThese.length === 0) {
-        //     return false;
-        // }
+        if (this.contentFilters.allOfThese.length === 0 && this.contentFilters.atLeastOnce.length === 0 && this.contentFilters.noneOfThese.length === 0) {
+            return false;
+        }
         this.getTwitterData();
         this.getNewsData();
         this.getInstagramData();
