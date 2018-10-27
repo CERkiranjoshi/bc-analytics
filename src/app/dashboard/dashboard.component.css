@@ -40,6 +40,10 @@
     text-align: center;
     line-height: 330px;
 }
+.no-data-instagram,.no-data-wc{
+    text-align: center;
+    line-height: 200px;
+}
 .sentiment-poisitive{
     color: #fbba22;
 }

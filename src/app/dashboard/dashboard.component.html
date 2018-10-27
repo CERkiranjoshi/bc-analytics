@@ -38,13 +38,13 @@
     </mat-menu>
     <button mat-icon-button class="pull-right" [matMenuTriggerFor]="location">
       <mat-icon>rss_feed</mat-icon>
-      <span>Popular</span>
+      <span>{{filterParam.resultType}}</span>
     </button>
     <mat-menu #location="matMenu">
-      <button mat-menu-item disabled>
+      <button mat-menu-item (click)="filterParam.resultType='recent'">
         <span>Most Recent</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item (click)="filterParam.resultType='popular'">
         <span>Popular</span>
       </button>
     </mat-menu>
@@ -103,7 +103,7 @@
         <div *ngIf="twitterData.items.length == 0" class="channel-content no-data">
           <p>No data available for selected filter.</p>
         </div>
-        <div class="channel-content">
+        <div *ngIf="twitterData.items.length > 0" class="channel-content">
           <mat-list>
             <mat-list-item *ngFor="let item of twitterData.items">
               <img matListAvatar src="{{item.user.user_profile}}" alt="...">
@@ -144,8 +144,11 @@
             <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter sentiment analysis</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="channel-content text-center">
-          <canvas  #twitterSentimentAnalysis id="pieChart" class="mrauto" width="350" height="350"></canvas>
+        <!-- <div *ngIf="twitterData.items.length == 0" class="channel-content no-data">
+          <p>No data available for selected filter.</p>
+        </div> -->
+        <div  class="channel-content text-center">
+          <canvas #twitterSentimentAnalysis id="pieChart" class="mrauto" width="335" height="335"></canvas>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
@@ -161,7 +164,10 @@
             <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter Word Cloud</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="channel-content-wc text-center">
+        <div *ngIf="twitterData.items.length == 0" class="channel-content-wc no-data-wc">
+          <p>No data available for selected filter.</p>
+        </div>
+        <div *ngIf="twitterData.items.length > 0" class="channel-content-wc text-center">
           <img class="img img-fluid" src="{{twitterData.wordcloud_path}}" alt="Word Cloud">
         </div>
       </mat-expansion-panel>
@@ -212,8 +218,11 @@
             <h4><i class="fa fa-newspaper-o news-icon"></i> News sentiment analysis</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
+        <!-- <div *ngIf="newsData.items.length == 0" class="channel-content no-data">
+          <p>No data available for selected filter.</p>
+        </div> -->
         <div class="channel-content text-center">
-          <canvas #newsSentimentAnalysis id="pieChartNews" class="mrauto" width="350" height="350"></canvas>
+          <canvas #newsSentimentAnalysis id="pieChartNews" class="mrauto" width="335" height="335"></canvas>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
@@ -229,9 +238,17 @@
             <h4><i class="fa fa-instagram instagram-icon"></i> Instagram Tag Count</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div class="channel-content-wc text-center">
-          <h3>#cricket</h3>
-          <h1>Used by 3206226 instagram users</h1>
+        <div *ngIf="instagramData.items.length == 0" class="channel-content-wc no-data-instagram">
+          <p>No data available for selected filter.</p>
+        </div>
+        <div *ngIf="instagramData.items.length > 0" class="channel-content-wc text-center">
+          <mat-list>
+            <mat-list-item *ngFor="let item of instagramData.items">
+              <h3 matLine><b># {{item.tag_name}}</b></h3>
+              <h1 matLine>Used by {{item.tag_media_count}} instagram users</h1>
+              <mat-divider></mat-divider>
+            </mat-list-item>
+          </mat-list>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

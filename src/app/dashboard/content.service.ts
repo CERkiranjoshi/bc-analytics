@@ -10,44 +10,44 @@ export class ContentService {
 
   constructor(private HttpClient: HttpClient) { }
 
-  getFilteredContentsTwitter(contentFilter: any) {
-    const data = {
-      "channelType": "twitter",
-      "resultType": "popular",
-      "searchParam": JSON.stringify({
-        "allOfThese": [
-          "virat",
-          "kohli"
-        ],
-        "atLeastOnce": [
-          "cricket",
-          "india"
-        ],
-        "noneOfThese": []
-      }),
-      "exclude": ""
-    }
-
+  getFilteredContentsTwitter(contentFilter: any, filterParam: any) {
+    contentFilter.searchParam = JSON.stringify(filterParam);
+    const data = contentFilter;
     var form_data = new FormData();
-
     for (var key in data) {
       form_data.append(key, data[key]);
     }
-    // return this.HttpClient.post("https://secure-hollows-83816.herokuapp.com/bca/getTwitterFeed/", form_data)
+    return this.HttpClient.post("https://secure-hollows-83816.herokuapp.com/bca/getTwitterFeed/", form_data)
+      .pipe(map((content) => { return content }));
+
+    // return this.HttpClient.get("assets/data/tweet.json")
     //   .pipe(map((content) => { return content }));
-
-    return this.HttpClient.get("assets/data/tweet.json")
-      .pipe(map((content) => { return content }));
   }
 
-  getFilteredContentsNews(contentFilter: any) {
-    return this.HttpClient.get("assets/data/news.json")
+  getFilteredContentsNews(contentFilter: any, filterParam: any) {
+    contentFilter.searchParam = JSON.stringify(filterParam);
+    const data = contentFilter;
+    var form_data = new FormData();
+    for (var key in data) {
+      form_data.append(key, data[key]);
+    }
+    return this.HttpClient.post("https://secure-hollows-83816.herokuapp.com/bca/getNewsFeed/", form_data)
       .pipe(map((content) => { return content }));
+    // return this.HttpClient.get("assets/data/news.json")
+    //   .pipe(map((content) => { return content }));
   }
 
-  getFilteredContentsInstagram(contentFilter: any) {
-    return this.HttpClient.get("assets/data/instagram.json")
+  getFilteredContentsInstagram(contentFilter: any, filterParam: any) {
+    contentFilter.searchParam = JSON.stringify(filterParam);
+    const data = contentFilter;
+    var form_data = new FormData();
+    for (var key in data) {
+      form_data.append(key, data[key]);
+    }
+    return this.HttpClient.post("https://secure-hollows-83816.herokuapp.com/bca/getInstagramTags/", form_data)
       .pipe(map((content) => { return content }));
+    // return this.HttpClient.get("assets/data/instagram.json")
+    //   .pipe(map((content) => { return content }));
   }
 
 

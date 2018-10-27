@@ -17,20 +17,21 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     public newsContext: CanvasRenderingContext2D;
 
     contentFilters: any = {};
+    filterParam: any = {}
     tempContent: any = {};
     panelOpenState = true;
     twitterData: any = {};
+    instagramData: any = {};
     newsData: any = {};
 
     constructor(private contentService: ContentService) {
         this.initFilter();
         this.twitterData.items = [];
         this.newsData.items = [];
+        this.instagramData.items = [];
     }
 
     ngOnInit() {
-        this.getTwitterData();
-        this.getNewsData();
     }
 
     ngAfterViewInit(): void {
@@ -45,6 +46,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.tempContent.allOfThese = '';
         this.tempContent.atLeastOnce = '';
         this.tempContent.noneOfThese = '';
+        this.filterParam.channelType = ''
+        this.filterParam.resultType = 'popular';
+        this.filterParam.exclude = '';
+        this.filterParam.searchParam = {};
     }
 
     onEnter(val: string) {
@@ -58,7 +63,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     removeText(val, i) {
         this.contentFilters[val].splice(i, 1);
-        console.log(this.contentFilters);
     }
 
     applyFilter() {
@@ -66,10 +70,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         //     return false;
         // }
         this.getTwitterData();
+        this.getNewsData();
+        this.getInstagramData();
     }
 
     getTwitterData() {
-        this.contentService.getFilteredContentsTwitter(this.contentFilters)
+        console.log(this.contentFilters)
+        this.filterParam.channelType = 'twitter';
+        this.contentService.getFilteredContentsTwitter(this.filterParam, this.contentFilters)
             .subscribe(
                 (response: any) => {
                     this.twitterData = response.results;
@@ -83,11 +91,24 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     getNewsData() {
-        this.contentService.getFilteredContentsNews(this.contentFilters)
+        this.filterParam.channelType = 'news';
+        this.contentService.getFilteredContentsNews(this.filterParam, this.contentFilters)
             .subscribe(
                 (response: any) => {
                     this.newsData = response.results;
                     this.drawNewsGraph();
+                },
+                (error) => {
+                    this.newsData = [];
+                }
+            );
+    }
+    getInstagramData() {
+        this.filterParam.channelType = 'instagram';
+        this.contentService.getFilteredContentsInstagram(this.filterParam, this.contentFilters)
+            .subscribe(
+                (response: any) => {
+                    this.instagramData = response.results;
                 },
                 (error) => {
                     this.newsData = [];
