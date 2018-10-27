@@ -65,7 +65,7 @@ body{
     margin-top: 10px !important;
   }
   .mt15 {
-    margin-top: 15px;
+    margin-top: 15px !important;
   }
   .mt25 {
     margin-top: 25px;
@@ -127,5 +127,11 @@ body{
 @media (max-width: 480px){
     .login-area{
       top:5% !important;
+    }
+    .mat-list .mat-list-item.mat-3-line{
+      height: auto !important;
+    }
+    .channel-content-wc{
+      height: 100px !important;
     }
   }
