@@ -7,38 +7,38 @@
       <button mat-menu-item (click)="initFilter()">
         <mat-icon>clear_all</mat-icon><span>Clear all</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item disabled>
         <mat-icon>import_export</mat-icon><span>Save as PDF</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item disabled>
         <mat-icon>import_export</mat-icon><span>Save as XL</span>
       </button>
     </mat-menu>
     <button mat-icon-button class="pull-right mr20 ml20" [matMenuTriggerFor]="menu">
 
       <mat-icon>calendar_today</mat-icon>
-      <span>Today</span>
+      <span>Last 7 Days</span>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item disabled>
         <span>Today</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item disabled>
         <span>Yesterday</span>
       </button>
       <button mat-menu-item>
         <span>Last 7 Days</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item disabled>
         <span>Current Month</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item disabled>
         <span>Current Year</span>
       </button>
     </mat-menu>
     <button mat-icon-button class="pull-right" [matMenuTriggerFor]="location">
       <mat-icon>rss_feed</mat-icon>
-      <span>Most Recent</span>
+      <span>Popular</span>
     </button>
     <mat-menu #location="matMenu">
       <button mat-menu-item disabled>
@@ -145,7 +145,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div class="channel-content text-center">
-          <canvas id="pieChart" class="mrauto" width="350" height="350"></canvas>
+          <canvas  #twitterSentimentAnalysis id="pieChart" class="mrauto" width="350" height="350"></canvas>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
@@ -213,7 +213,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div class="channel-content text-center">
-          <canvas id="pieChartNews" class="mrauto" width="350" height="350"></canvas>
+          <canvas #newsSentimentAnalysis id="pieChartNews" class="mrauto" width="350" height="350"></canvas>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

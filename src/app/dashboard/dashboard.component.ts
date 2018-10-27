@@ -1,15 +1,20 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import 'rxjs'
 import { ContentService } from "./content.service";
-
+declare let Chart: any;
+// https://stackoverflow.com/questions/44426939/how-to-use-canvas-in-angular2/44429328
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
+    @ViewChild('twitterSentimentAnalysis') twitterSentimentAnalysis: ElementRef;
+    @ViewChild('newsSentimentAnalysis') newsSentimentAnalysis: ElementRef;
+    public twitterContext: CanvasRenderingContext2D;
+    public newsContext: CanvasRenderingContext2D;
 
     contentFilters: any = {};
     tempContent: any = {};
@@ -26,6 +31,11 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
         this.getTwitterData();
         this.getNewsData();
+    }
+
+    ngAfterViewInit(): void {
+        this.twitterContext = (<HTMLCanvasElement>this.twitterSentimentAnalysis.nativeElement).getContext('2d');
+        this.newsContext = (<HTMLCanvasElement>this.newsSentimentAnalysis.nativeElement).getContext('2d');
     }
 
     initFilter() {
@@ -86,8 +96,7 @@ export class DashboardComponent implements OnInit {
     }
 
     drawTwitterGraph() {
-        var ctxP = document.getElementById("pieChart").getContext('2d');
-        var myPieChart = new Chart(ctxP, {
+        var myPieChart = new Chart(this.twitterContext, {
             type: 'pie',
             data: {
                 labels: ["Positive", "Negative", "Neutral"],
@@ -106,8 +115,7 @@ export class DashboardComponent implements OnInit {
     }
 
     drawNewsGraph() {
-        var ctxP = document.getElementById("pieChartNews").getContext('2d');
-        var myPieChart = new Chart(ctxP, {
+        var myPieChart = new Chart(this.newsContext, {
             type: 'pie',
             data: {
                 labels: ["Positive", "Negative", "Neutral"],
