@@ -67,6 +67,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     applyFilter() {
         if (this.contentFilters.allOfThese.length === 0 && this.contentFilters.atLeastOnce.length === 0 && this.contentFilters.noneOfThese.length === 0) {
+            alert('Please add search conetnt.')
             return false;
         }
         this.getTwitterData();
