@@ -132,15 +132,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     drawTwitterGraph() {
+        if (this.twitterData.items.length == 0) {
+            return false;
+        }
         var myPieChart = new Chart(this.twitterContext, {
             type: 'pie',
             data: {
                 labels: ["Positive", "Negative", "Neutral"],
                 datasets: [
                     {
-                        data: [300, 50, 100],
-                        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-                        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+                        data: [this.twitterData.sentiment.Positive, this.twitterData.sentiment.Negative, this.twitterData.sentiment.Neutral],
+                        backgroundColor: ["#00ba38", "#f8766d", "#619cff"],
+                        hoverBackgroundColor: ["#00ed47", "#faa49e", "#94bcff"]
                     }
                 ]
             },
@@ -151,15 +154,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     drawNewsGraph() {
+        if (this.newsData.items.length == 0) {
+            return false;
+        }
         var myPieChart = new Chart(this.newsContext, {
             type: 'pie',
             data: {
                 labels: ["Positive", "Negative", "Neutral"],
                 datasets: [
                     {
-                        data: [300, 50, 100],
-                        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
-                        hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+                        data: [this.newsData.sentiment.Positive, this.newsData.sentiment.Negative, this.newsData.sentiment.Neutral],
+                        backgroundColor: ["#00ba38", "#f8766d", "#619cff"],
+                        hoverBackgroundColor: ["#00ed47", "#faa49e", "#94bcff"]
                     }
                 ]
             },

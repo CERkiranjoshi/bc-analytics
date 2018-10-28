@@ -135,3 +135,7 @@ body{
       height: 100px !important;
     }
   }
+
+  .mat-list .mat-list-item.mat-3-line{
+    height: auto !important;
+  }
