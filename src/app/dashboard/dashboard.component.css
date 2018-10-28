@@ -45,10 +45,13 @@
     line-height: 200px;
 }
 .sentiment-poisitive{
-    color: #fbba22;
+    color: #00ba38;
 }
 .sentiment-nagative{
-    color: red;;
+    color: #f8766d;
+}
+.sentiment-neutral{
+    color: #619cff;
 }
 .dashboard-graph-spin{
     font-size: 100px;

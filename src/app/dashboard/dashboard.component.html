@@ -131,6 +131,9 @@
                 <span *ngIf="item.sentiment=='negative'" class="pull-right sentiment-nagative" matTooltip="Negative">
                   <mat-icon>sentiment_very_dissatisfied</mat-icon>
                 </span>
+                <span *ngIf="item.sentiment=='neutral'" class="pull-right sentiment-neutral" matTooltip="Neutral">
+                  <mat-icon>sentiment_satisfied</mat-icon>
+                </span>
               </p>
               <mat-divider></mat-divider>
             </mat-list-item>
