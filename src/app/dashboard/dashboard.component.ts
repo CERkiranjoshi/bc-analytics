@@ -23,6 +23,9 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     twitterData: any = {};
     instagramData: any = {};
     newsData: any = {};
+    twitterLoader = false;
+    newsLoader = false;
+    instagramLoader = false;
 
     constructor(private contentService: ContentService) {
         this.initFilter();
@@ -76,7 +79,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     getTwitterData() {
-        console.log(this.contentFilters)
+        this.twitterLoader = true;
+        this.twitterData.items = [];
         this.filterParam.channelType = 'twitter';
         this.contentService.getFilteredContentsTwitter(this.filterParam, this.contentFilters)
             .subscribe(
@@ -84,35 +88,45 @@ export class DashboardComponent implements OnInit, AfterViewInit {
                     this.twitterData = response.results;
                     this.twitterData.wordcloud_path = 'https://secure-hollows-83816.herokuapp.com/static/img/wc.png?rand=' + Math.random();
                     this.drawTwitterGraph();
+                    this.twitterLoader = false;
                 },
                 (error) => {
-                    this.twitterData = [];
+                    this.twitterData.items = [];
+                    this.twitterLoader = false;
                 }
             );
     }
 
     getNewsData() {
+        this.newsLoader = true;
+        this.newsData.items = [];
         this.filterParam.channelType = 'news';
         this.contentService.getFilteredContentsNews(this.filterParam, this.contentFilters)
             .subscribe(
                 (response: any) => {
                     this.newsData = response.results;
                     this.drawNewsGraph();
+                    this.newsLoader = false;
                 },
                 (error) => {
-                    this.newsData = [];
+                    this.newsData.items = [];
+                    this.newsLoader = false;
                 }
             );
     }
     getInstagramData() {
+        this.instagramLoader = true;
+        this.instagramData.items = [];
         this.filterParam.channelType = 'instagram';
         this.contentService.getFilteredContentsInstagram(this.filterParam, this.contentFilters)
             .subscribe(
                 (response: any) => {
                     this.instagramData = response.results;
+                    this.instagramLoader = false;
                 },
                 (error) => {
-                    this.newsData = [];
+                    this.instagramData.items = [];
+                    this.instagramLoader = false;
                 }
             );
     }

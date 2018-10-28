@@ -100,10 +100,13 @@
             <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter Feeds</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngIf="twitterData.items.length == 0" class="channel-content no-data">
+        <div *ngIf="twitterData.items.length == 0 && twitterLoader==false" class="channel-content no-data">
           <p>No data available for selected filter.</p>
         </div>
-        <div *ngIf="twitterData.items.length > 0" class="channel-content">
+        <div *ngIf="twitterData.items.length == 0 && twitterLoader==true" class="block-loader-tc channel-content text-center">
+          <i [ngStyle]="{'color': '#0084b4'}" class="fa fa-cog fa-spin fa-3x fa-fw dashboard-graph-spin"></i>
+        </div>
+        <div *ngIf="twitterData.items.length > 0 && twitterLoader==false" class="channel-content">
           <mat-list>
             <mat-list-item *ngFor="let item of twitterData.items">
               <img matListAvatar src="{{item.user.user_profile}}" alt="...">
@@ -144,10 +147,13 @@
             <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter sentiment analysis</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <!-- <div *ngIf="twitterData.items.length == 0" class="channel-content no-data">
+        <div *ngIf="twitterData.items.length == 0 && twitterLoader==false" class="channel-content no-data">
           <p>No data available for selected filter.</p>
-        </div> -->
-        <div  class="channel-content text-center">
+        </div>
+        <div *ngIf="twitterData.items.length == 0 && twitterLoader==true" class="block-loader-tc channel-content text-center">
+          <i [ngStyle]="{'color': '#0084b4'}" class="fa fa-cog fa-spin fa-3x fa-fw dashboard-graph-spin"></i>
+        </div>
+        <div class="channel-content text-center" [ngClass]="{'chart-block-hide': twitterData.items.length == 0 || twitterLoader==true,'chart-block-show':twitterData.items.length > 0 && twitterLoader==false}">
           <canvas #twitterSentimentAnalysis id="pieChart" class="mrauto" width="335" height="335"></canvas>
         </div>
       </mat-expansion-panel>
@@ -164,11 +170,14 @@
             <h4><i class="fa fa-twitter-square twitter-icon"></i> Twitter Word Cloud</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngIf="twitterData.items.length == 0" class="channel-content-wc no-data-wc">
+        <div *ngIf="twitterData.items.length == 0 && twitterLoader==false" class="channel-content-wc no-data-wc">
           <p>No data available for selected filter.</p>
         </div>
-        <div *ngIf="twitterData.items.length > 0" class="channel-content-wc text-center">
+        <div *ngIf="twitterData.items.length > 0 && twitterLoader==false" class="channel-content-wc text-center">
           <img class="img img-fluid" src="{{twitterData.wordcloud_path}}" alt="Word Cloud">
+        </div>
+        <div *ngIf="twitterData.items.length == 0 && twitterLoader==true" class="block-loader-wc channel-content-wc text-center">
+          <i [ngStyle]="{'color': '#0084b4'}" class="fa fa-cog fa-spin fa-3x fa-fw dashboard-graph-spin"></i>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
@@ -184,10 +193,13 @@
             <h4><i class="fa fa-newspaper-o news-icon"></i> News</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngIf="newsData.items.length == 0" class="channel-content no-data">
+        <div *ngIf="newsData.items.length == 0 && newsLoader==false" class="channel-content no-data">
           <p>No data available for selected filter.</p>
         </div>
-        <div *ngIf="newsData.items.length > 0" class="channel-content">
+        <div *ngIf="newsData.items.length == 0 && newsLoader==true" class="block-loader-tc channel-content text-center">
+          <i [ngStyle]="{'color': '#e73446'}" class="fa fa-cog fa-spin fa-3x fa-fw dashboard-graph-spin"></i>
+        </div>
+        <div *ngIf="newsData.items.length > 0 && newsLoader==false" class="channel-content">
           <mat-list>
             <mat-list-item *ngFor="let item of newsData.items">
               <img matListAvatar src="../../assets/img/news.png" alt="News">
@@ -199,7 +211,7 @@
                   <span class="ml5">{{item.published_on | date:'dd MMM yyyy h:mm a'}}</span>
                 </button>
                 <button mat-icon-button class="pull-left mr10" style="width: auto;">
-                  <mat-icon>share</mat-icon>
+                  <mat-icon matTooltip="Facebook share">share</mat-icon>
                   <span class="ml5">{{item.social_shares.facebook}}</span>
                 </button>
               </p>
@@ -218,10 +230,13 @@
             <h4><i class="fa fa-newspaper-o news-icon"></i> News sentiment analysis</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <!-- <div *ngIf="newsData.items.length == 0" class="channel-content no-data">
+        <div *ngIf="newsData.items.length == 0 && newsLoader==false" class="channel-content no-data">
           <p>No data available for selected filter.</p>
-        </div> -->
-        <div class="channel-content text-center">
+        </div>
+        <div *ngIf="newsData.items.length == 0 && newsLoader==true" class="block-loader-tc channel-content text-center">
+          <i [ngStyle]="{'color': '#e73446'}" class="fa fa-cog fa-spin fa-3x fa-fw dashboard-graph-spin"></i>
+        </div>
+        <div class="channel-content text-center" [ngClass]="{'chart-block-hide': newsData.items.length == 0 || newsLoader==true,'chart-block-show':newsData.items.length > 0 && newsLoader==false}">
           <canvas #newsSentimentAnalysis id="pieChartNews" class="mrauto" width="335" height="335"></canvas>
         </div>
       </mat-expansion-panel>
@@ -238,10 +253,10 @@
             <h4><i class="fa fa-instagram instagram-icon"></i> Instagram Tag Count</h4>
           </mat-panel-title>
         </mat-expansion-panel-header>
-        <div *ngIf="instagramData.items.length == 0" class="channel-content-wc no-data-instagram">
+        <div *ngIf="instagramData.items.length == 0 && instagramLoader==false" class="channel-content-wc no-data-instagram">
           <p>No data available for selected filter.</p>
         </div>
-        <div *ngIf="instagramData.items.length > 0" class="channel-content-wc text-center">
+        <div *ngIf="instagramData.items.length > 0 && instagramLoader==false" class="channel-content-wc text-center">
           <mat-list>
             <mat-list-item *ngFor="let item of instagramData.items">
               <h3 matLine><b># {{item.tag_name}}</b></h3>
@@ -249,6 +264,9 @@
               <mat-divider></mat-divider>
             </mat-list-item>
           </mat-list>
+        </div>
+        <div *ngIf="instagramData.items.length == 0 && instagramLoader==true" class="block-loader-wc channel-content-wc text-center">
+          <i [ngStyle]="{'color': '#bf2c73'}" class="fa fa-cog fa-spin fa-3x fa-fw dashboard-graph-spin"></i>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

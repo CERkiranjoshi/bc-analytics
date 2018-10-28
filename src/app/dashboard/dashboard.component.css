@@ -36,11 +36,11 @@
 .channel-content-wc{
     height: 200px;
 }
-.no-data{
+.no-data,.block-loader-tc{
     text-align: center;
     line-height: 330px;
 }
-.no-data-instagram,.no-data-wc{
+.no-data-instagram,.no-data-wc,.block-loader-wc{
     text-align: center;
     line-height: 200px;
 }
@@ -49,4 +49,14 @@
 }
 .sentiment-nagative{
     color: red;;
+}
+.dashboard-graph-spin{
+    font-size: 100px;
+    opacity: 0.8;
+}
+.chart-block-hide{
+    display: none;
+}
+.chart-block-show{
+    display: block;
 }
