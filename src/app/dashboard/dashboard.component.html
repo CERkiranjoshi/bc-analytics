@@ -92,7 +92,7 @@
 <mat-divider class="mt20"></mat-divider>
 
 <div class="row">
-  <div class="col-lg-6 col-md-12 col-sm-12 col-12 search-data mt20 mb20">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12 search-data mt20 mb20">
     <mat-accordion>
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
@@ -110,8 +110,10 @@
           <mat-list>
             <mat-list-item *ngFor="let item of twitterData.items">
               <img matListAvatar src="{{item.user.user_profile}}" alt="...">
-              <h3 matLine class="mt5"> {{item.user.user_screenname}} </h3>
-              <h3 matLine class="mt5" matTooltip="{{item.tweet}}"> {{item.tweet}} </h3>
+              <h3 matLine class="mt5"> {{item.tweet}} </h3>
+              <h3 matLine class="mt5 username_style"> {{item.user.user_screenname}} </h3>
+              <h3 matLine *ngIf="item.hashtags!=''"><span>Hashtags : <b>{{item.hashtags}}</b></span></h3>
+              <h3 matLine *ngIf="item.user_tagged!=''"><span>Usertagged : <b>{{item.user_tagged}}</b></span></h3>
               <p matLine>
                 <button mat-icon-button class="pull-left mr10" style="width: auto;">
                   <mat-icon>access_time</mat-icon>
@@ -142,7 +144,7 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-  <div class="col-lg-6 col-md-12 col-sm-12 col-12 search-data mt20 mb20">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12 search-data mt20 mb20">
     <mat-accordion>
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
@@ -188,7 +190,7 @@
 </div>
 <mat-divider></mat-divider>
 <div class="row">
-  <div class="col-lg-6 col-md-12 col-sm-12 col-12 word-cloud mt20 mb20">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12 word-cloud mt20 mb20">
     <mat-accordion>
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>
@@ -206,17 +208,26 @@
           <mat-list>
             <mat-list-item *ngFor="let item of newsData.items">
               <img matListAvatar src="../../assets/img/news.png" alt="News">
-              <h3 matLine class="mt5"> {{item.publisher}} </h3>
-              <h3 matLine class="mt5" matTooltip="{{item.title}}"> {{item.title}} </h3>
+              <h3 matLine class="mt5"> <a href="{{item.link}}" target="_href">{{item.title}}</a></h3>
+              <h3 matLine class="mt5 username_style"> {{item.publisher}} </h3>
               <p matLine>
                 <button mat-icon-button class="pull-left mr10" style="width: auto;">
                   <mat-icon>access_time</mat-icon>
                   <span class="ml5">{{item.published_on | date:'dd MMM yyyy h:mm a'}}</span>
                 </button>
-                <button mat-icon-button class="pull-left mr10" style="width: auto;">
+                <button *ngIf="item.social_shares.facebook" mat-icon-button class="pull-left mr10" style="width: auto;">
                   <mat-icon matTooltip="Facebook share">share</mat-icon>
                   <span class="ml5">{{item.social_shares.facebook}}</span>
                 </button>
+                <span *ngIf="item.sentiment=='positive'" class="pull-right sentiment-poisitive" matTooltip="Positive">
+                  <mat-icon>sentiment_very_satisfied</mat-icon>
+                </span>
+                <span *ngIf="item.sentiment=='negative'" class="pull-right sentiment-nagative" matTooltip="Negative">
+                  <mat-icon>sentiment_very_dissatisfied</mat-icon>
+                </span>
+                <span *ngIf="item.sentiment=='neutral'" class="pull-right sentiment-neutral" matTooltip="Neutral">
+                  <mat-icon>sentiment_satisfied</mat-icon>
+                </span>
               </p>
               <mat-divider></mat-divider>
             </mat-list-item>
@@ -225,7 +236,7 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-  <div class="col-lg-6 col-md-12 col-sm-12 col-12 word-cloud mt20 mb20">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-12 word-cloud mt20 mb20">
     <mat-accordion>
       <mat-expansion-panel expanded>
         <mat-expansion-panel-header>

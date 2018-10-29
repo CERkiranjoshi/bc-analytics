@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.applyFilter();
     }
 
     ngAfterViewInit(): void {
@@ -53,11 +54,12 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.filterParam.resultType = 'popular';
         this.filterParam.exclude = '';
         this.filterParam.searchParam = {};
+        this.contentFilters.allOfThese.push('clickz');
     }
 
     onEnter(val: string) {
         let searchIndex = _.indexOf(this.contentFilters[val], this.tempContent[val].trim());
-        if (this.tempContent[val].trim() != '' && this.tempContent[val].trim().length > 2 && searchIndex === -1) {
+        if (this.tempContent[val].trim() != '' && this.tempContent[val].trim().length >= 2 && searchIndex === -1) {
             this.contentFilters[val].push(this.tempContent[val].trim());
             this.tempContent[val] = '';
         }

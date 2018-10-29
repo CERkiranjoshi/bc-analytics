@@ -5,7 +5,7 @@
 .search-text{
     padding: 10px;
     border: 1px solid #e6e6e6;
-    min-height: 180px;
+    min-height: 100px;
     border-radius: 7px; 
 }
 
@@ -62,4 +62,7 @@
 }
 .chart-block-show{
     display: block;
+}
+.username_style{
+    font-style: italic;
 }
