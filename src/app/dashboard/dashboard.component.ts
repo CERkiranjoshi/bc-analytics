@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
         this.tempContent.atLeastOnce = '';
         this.tempContent.noneOfThese = '';
         this.filterParam.channelType = ''
-        this.filterParam.resultType = 'popular';
+        this.filterParam.resultType = 'recent';
         this.filterParam.exclude = '';
         this.filterParam.searchParam = {};
         this.contentFilters.allOfThese.push('clickz');
